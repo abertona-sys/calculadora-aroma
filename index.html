@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imperio de los Aromas - Calculadora Pro</title>
+    <title>Imperio de los Aromas - App PRO</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -38,107 +38,107 @@
             border: 1px solid rgba(220, 174, 150, 0.2);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
         }
-        .input-premium {
-            @apply w-full p-3 border-gray-100 border rounded-xl focus:ring-2 focus:ring-gold outline-none text-sm;
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
         }
     </style>
 </head>
 <body class="font-sans antialiased min-h-screen pb-20">
 
     <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-4xl mx-auto px-4 py-5 flex justify-between items-center">
-            <h1 class="font-serif text-2xl font-bold text-gold">Imperio de los Aromas</h1>
-            <span class="text-xs font-bold bg-sageGreen text-white px-3 py-1 rounded-full uppercase">Calculadora de Blends</span>
+        <div class="max-w-5xl mx-auto px-4 py-5 flex justify-between items-center">
+            <h1 class="font-serif text-2xl font-bold text-gold"><i class="fa-solid fa-leaf mr-2"></i>Imperio App</h1>
+            <span class="text-xs font-bold bg-sageGreen text-white px-3 py-1 rounded-full uppercase">PRO V2</span>
         </div>
         <nav class="flex overflow-x-auto border-b border-gray-100 bg-ivory">
-            <button onclick="openTab('calc')" class="tab-btn active px-6 py-3 text-sm font-bold text-gold border-b-2 border-gold">Calculadora</button>
-            <button onclick="openTab('recipes')" class="tab-btn px-6 py-3 text-sm font-bold text-gray-400">Recetario</button>
-            <button onclick="openTab('help')" class="tab-btn px-6 py-3 text-sm font-bold text-gray-400">Rescate AI</button>
+            <button onclick="openTab('calc')" class="tab-btn active px-6 py-3 text-sm font-bold text-gold border-b-2 border-gold whitespace-nowrap">Calculadora</button>
+            <button onclick="openTab('recipes')" class="tab-btn px-6 py-3 text-sm font-bold text-gray-400 whitespace-nowrap">Recetario</button>
+            <button onclick="openTab('catalog')" class="tab-btn px-6 py-3 text-sm font-bold text-gray-400 whitespace-nowrap">Catálogo</button>
+            <button onclick="openTab('help')" class="tab-btn px-6 py-3 text-sm font-bold text-gray-400 whitespace-nowrap">Asistencia</button>
         </nav>
     </header>
 
-    <main class="max-w-4xl mx-auto px-4 py-8">
+    <main class="max-w-5xl mx-auto px-4 py-8">
 
         <section id="calc" class="tab-content active">
             <h2 class="font-serif text-3xl mb-2 text-sageGreen text-center">Calculadora de Blends</h2>
-            <p class="text-sm text-gray-500 mb-8 text-center">Desglosa cada ingrediente para obtener un costo real.</p>
+            <p class="text-sm text-gray-500 mb-8 text-center">Calcula rentabilidad exacta según la Masterclass.</p>
             
-            <div class="glass-card rounded-2xl p-6 mb-6">
-                <h3 class="text-xs font-bold uppercase text-gold mb-4 tracking-widest"><i class="fa-solid fa-box-open mr-2"></i>Base de Cera</h3>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="text-[10px] font-bold text-gray-400 uppercase">Precio por Kg ($)</label>
-                        <input type="number" id="base_wax_price" class="w-full mt-1 p-3 border border-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-gold" value="10">
-                    </div>
-                    <div>
-                        <label class="text-[10px] font-bold text-gray-400 uppercase">Gramos usados</label>
-                        <input type="number" id="base_wax_qty" class="w-full mt-1 p-3 border border-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-gold" value="180">
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card rounded-2xl p-6 mb-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xs font-bold uppercase text-gold tracking-widest"><i class="fa-solid fa-droplet mr-2"></i>Mezcla de Aceites (Blend)</h3>
-                    <button onclick="addOilRow()" class="text-xs bg-sageGreen text-white px-3 py-1 rounded-lg font-bold hover:bg-opacity-80 transition">+ Añadir Aceite</button>
-                </div>
-                <div id="oilContainer" class="space-y-4">
-                    <div class="oil-row grid grid-cols-12 gap-2 items-end border-b border-gray-50 pb-4">
-                        <div class="col-span-5">
-                            <label class="text-[10px] font-bold text-gray-300 uppercase">Nombre/Nota</label>
-                            <input type="text" placeholder="Ej: Lavanda" class="oil-name w-full mt-1 p-2 border border-gray-100 rounded-lg text-sm outline-none">
-                        </div>
-                        <div class="col-span-3">
-                            <label class="text-[10px] font-bold text-gray-300 uppercase">Precio/100ml</label>
-                            <input type="number" placeholder="30" class="oil-price w-full mt-1 p-2 border border-gray-100 rounded-lg text-sm outline-none">
-                        </div>
-                        <div class="col-span-3">
-                            <label class="text-[10px] font-bold text-gray-300 uppercase">Gramos</label>
-                            <input type="number" placeholder="10" class="oil-qty w-full mt-1 p-2 border border-gray-100 rounded-lg text-sm outline-none">
-                        </div>
-                        <div class="col-span-1 text-center">
-                            <button onclick="this.parentElement.parentElement.remove()" class="text-red-300 hover:text-red-500 mb-2"><i class="fa-solid fa-xmark"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card rounded-2xl p-6 mb-8">
-                <h3 class="text-xs font-bold uppercase text-gold mb-4 tracking-widest"><i class="fa-solid fa-tags mr-2"></i>Empaque y Labor</h3>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="text-[10px] font-bold text-gray-400 uppercase">Empaque Unitario ($)</label>
-                        <input type="number" id="pack_price" class="w-full mt-1 p-3 border border-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-gold" value="1.5">
-                    </div>
-                    <div>
-                        <label class="text-[10px] font-bold text-gray-400 uppercase">Tu Pago/Hora ($)</label>
-                        <input type="number" id="labor_price" class="w-full mt-1 p-3 border border-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-gold" value="15">
-                    </div>
-                </div>
-                <button type="button" onclick="calculateComplex()" class="w-full bg-darkText text-white font-bold py-4 rounded-xl shadow-lg mt-6 hover:bg-opacity-90 transition uppercase tracking-widest text-sm">Calcular Inversión Total</button>
-            </div>
-
-            <div id="resBox" class="hidden glass-card rounded-3xl p-8 border-l-[12px] border-sageGreen bg-white transition-all">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="text-[10px] font-bold text-gray-400 uppercase mb-4 tracking-widest">Resumen de Producción</h4>
-                        <div class="space-y-3 text-sm">
-                            <div class="flex justify-between"><span>Peso Total Producto:</span><span id="res_weight" class="font-bold"></span></div>
-                            <div class="flex justify-between"><span>Costo Materia Prima:</span><span id="res_mp" class="font-bold"></span></div>
-                            <div class="flex justify-between text-dustyRose"><span>Gastos Ocultos (15%):</span><span id="res_hidden" class="font-bold"></span></div>
-                            <div class="flex justify-between border-t pt-2 text-lg font-serif"><span>Costo Unitario Real:</span><span id="res_total" class="font-bold text-darkText"></span></div>
-                        </div>
-                    </div>
-                    <div class="bg-ivory p-6 rounded-2xl">
-                        <h4 class="text-[10px] font-bold text-gold uppercase mb-4 tracking-widest">Precios de Venta</h4>
-                        <div class="space-y-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <div class="glass-card rounded-2xl p-6 mb-6">
+                        <h3 class="text-xs font-bold uppercase text-gold mb-4 tracking-widest"><i class="fa-solid fa-box-open mr-2"></i>Base de Cera</h3>
+                        <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <p class="text-[10px] font-bold text-sageGreen uppercase">Público Final (Retail)</p>
-                                <p id="res_retail" class="text-4xl font-serif font-bold text-sageGreen"></p>
+                                <label class="text-[10px] font-bold text-gray-400 uppercase">Precio por Kg ($)</label>
+                                <input type="number" id="base_wax_price" class="w-full mt-1 p-3 border border-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-gold" value="10">
                             </div>
                             <div>
-                                <p class="text-[10px] font-bold text-gold uppercase">Mayorista / Eventos</p>
-                                <p id="res_wholesale" class="text-4xl font-serif font-bold text-gold"></p>
+                                <label class="text-[10px] font-bold text-gray-400 uppercase">Gramos usados</label>
+                                <input type="number" id="base_wax_qty" class="w-full mt-1 p-3 border border-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-gold" value="180">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-6 mb-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xs font-bold uppercase text-gold tracking-widest"><i class="fa-solid fa-droplet mr-2"></i>Mezcla de Aceites</h3>
+                            <button onclick="addOilRow()" class="text-xs bg-sageGreen text-white px-3 py-1 rounded-lg font-bold hover:bg-opacity-80 transition">+ Añadir</button>
+                        </div>
+                        <div id="oilContainer" class="space-y-4">
+                            </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-6 mb-6">
+                        <h3 class="text-xs font-bold uppercase text-gold mb-4 tracking-widest"><i class="fa-solid fa-tags mr-2"></i>Empaque y Labor</h3>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div>
+                                <label class="text-[10px] font-bold text-gray-400 uppercase">Empaque ($)</label>
+                                <input type="number" id="pack_price" class="w-full mt-1 p-3 border border-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-gold" value="1.5">
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-bold text-gray-400 uppercase">Pago/Hora ($)</label>
+                                <input type="number" id="labor_price" class="w-full mt-1 p-3 border border-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-gold" value="15">
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-bold text-gray-400 uppercase">Tiempo (min)</label>
+                                <input type="number" id="labor_time" class="w-full mt-1 p-3 border border-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-gold" value="15">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="calculateCost()" class="w-full bg-darkText text-white font-bold py-4 rounded-xl shadow-lg hover:bg-opacity-90 transition uppercase tracking-widest text-sm">Calcular Inversión Total</button>
+                </div>
+
+                <div>
+                    <div id="resBox" class="hidden glass-card rounded-3xl p-8 border-t-8 border-sageGreen bg-white sticky top-24">
+                        <h4 class="text-[10px] font-bold text-gray-400 uppercase mb-4 tracking-widest">Resumen de Producción</h4>
+                        <div class="space-y-3 text-sm mb-6 border-b border-gray-100 pb-6">
+                            <div class="flex justify-between"><span>Materia Prima (Cera + Aceites + Empaque):</span><span id="res_mp" class="font-bold"></span></div>
+                            <div class="flex justify-between text-dustyRose"><span>Gastos Ocultos (15%):</span><span id="res_hidden" class="font-bold"></span></div>
+                            <div class="flex justify-between"><span>Mano de Obra:</span><span id="res_labor" class="font-bold"></span></div>
+                            <div class="flex justify-between border-t pt-2 text-lg font-serif"><span>Costo Unitario Total:</span><span id="res_total" class="font-bold text-darkText"></span></div>
+                        </div>
+                        
+                        <h4 class="text-[10px] font-bold text-gold uppercase mb-4 tracking-widest">Precios de Venta Sugeridos</h4>
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="bg-ivory p-4 rounded-xl text-center border border-gray-100">
+                                <p class="text-[10px] font-bold text-sageGreen uppercase">Retail (x3.5)</p>
+                                <p id="res_retail" class="text-2xl font-serif font-bold text-sageGreen"></p>
+                            </div>
+                            <div class="bg-ivory p-4 rounded-xl text-center border border-gray-100">
+                                <p class="text-[10px] font-bold text-gold uppercase">Mayorista (x2)</p>
+                                <p id="res_wholesale" class="text-2xl font-serif font-bold text-gold"></p>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-gray-100">
+                            <label class="text-[10px] font-bold text-gray-400 uppercase">Guardar en Catálogo</label>
+                            <div class="flex gap-2 mt-1">
+                                <input type="text" id="saveName" placeholder="Nombre del producto..." class="flex-1 p-3 border border-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-gold text-sm">
+                                <button onclick="saveToCatalog()" class="bg-gold text-white px-4 rounded-xl hover:bg-opacity-90 transition"><i class="fa-solid fa-bookmark"></i></button>
                             </div>
                         </div>
                     </div>
@@ -147,21 +147,97 @@
         </section>
 
         <section id="recipes" class="tab-content">
-            <h2 class="font-serif text-3xl mb-6 text-sageGreen">Recetario Premium</h2>
-            <div id="recipeGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+            <h2 class="font-serif text-3xl mb-6 text-sageGreen">Recetario</h2>
+            
+            <h3 class="text-xl font-serif text-gold mb-4 border-b pb-2">Recetas Premium (Bono 2)</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" id="premiumRecipesGrid">
+                </div>
+
+            <h3 class="text-xl font-serif text-gold mb-4 border-b pb-2">Mis Recetas Personalizadas</h3>
+            
+            <div class="glass-card rounded-2xl p-6 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                    <input type="text" id="myR_name" placeholder="Nombre de la receta" class="md:col-span-2 p-3 border border-gray-100 rounded-xl text-sm outline-none">
+                    <input type="text" id="myR_wax" placeholder="Tipo de Cera" class="p-3 border border-gray-100 rounded-xl text-sm outline-none">
+                    <input type="text" id="myR_temp" placeholder="Temp. Vertido (°C)" class="p-3 border border-gray-100 rounded-xl text-sm outline-none">
+                </div>
+                <textarea id="myR_blend" placeholder="Detalle del blend (Ej: 10g Lavanda, 5g Vainilla)" class="w-full p-3 border border-gray-100 rounded-xl text-sm outline-none mb-4" rows="2"></textarea>
+                <button onclick="saveCustomRecipe()" class="w-full md:w-auto px-6 bg-sageGreen text-white font-bold py-3 rounded-xl shadow hover:bg-opacity-90 transition text-sm uppercase tracking-widest">Guardar Receta</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="myRecipesGrid"></div>
+        </section>
+
+        <section id="catalog" class="tab-content">
+            <h2 class="font-serif text-3xl mb-2 text-sageGreen">Mi Catálogo de Productos</h2>
+            <p class="text-sm text-gray-500 mb-8">Productos guardados desde la Calculadora.</p>
+            <div id="catalogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
         </section>
 
         <section id="help" class="tab-content">
-            <h2 class="font-serif text-3xl mb-6 text-sageGreen">Manual de Rescate</h2>
-            <div id="troubleAccordion" class="space-y-4"></div>
-            <div class="mt-8 p-6 bg-ivory rounded-2xl border border-gold border-dashed text-center">
-                <p class="text-sm italic mb-4">¿Dudas técnicas específicas? Pregunta a la IA del Imperio.</p>
-                <a href="https://gemini.google.com/gem/0562d0cce8e5" target="_blank" class="bg-gold text-white px-6 py-3 rounded-xl font-bold inline-block">Abrir Experto Aromático</a>
+            <div class="bg-gradient-to-br from-darkText to-gray-800 rounded-3xl p-8 text-white mb-10 shadow-2xl relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="font-serif text-3xl mb-3">El Experto Aromático</h2>
+                    <p class="text-gray-300 mb-6 max-w-md">Tu asistente de inteligencia artificial entrenado con toda la base de datos del Imperio.</p>
+                    <a href="https://gemini.google.com/gem/0562d0cce8e5" target="_blank" class="bg-gold hover:bg-white hover:text-gold transition px-8 py-4 rounded-xl font-bold inline-block shadow-xl">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Abrir Consultoría AI
+                    </a>
+                </div>
+            </div>
+
+            <h3 class="font-serif text-2xl mb-5 text-gray-700">Troubleshooting (Bono 7)</h3>
+            <div class="space-y-4">
+                <div class="glass-card rounded-xl overflow-hidden border border-gray-100">
+                    <button onclick="toggleAccordion('acc1')" class="w-full text-left p-5 font-bold flex justify-between items-center bg-white hover:bg-gray-50 transition">
+                        ¿Manchas blancas? (Frosting) <i class="fa-solid fa-chevron-down text-gold"></i>
+                    </button>
+                    <div id="acc1" class="accordion-content px-5 bg-white">
+                        <p class="py-4 text-sm text-gray-600 border-t border-gray-50"><strong>Causa:</strong> Enfriamiento rápido o choque térmico. Reacción natural de la soja.<br><strong>Solución:</strong> Pasa rápidamente un secador de pelo o pistola de calor sobre la superficie por 3-5 segundos. Al secarse, el frosting habrá desaparecido.</p>
+                    </div>
+                </div>
+                <div class="glass-card rounded-xl overflow-hidden border border-gray-100">
+                    <button onclick="toggleAccordion('acc2')" class="w-full text-left p-5 font-bold flex justify-between items-center bg-white hover:bg-gray-50 transition">
+                        ¿Gotas de aceite? (Sudoración) <i class="fa-solid fa-chevron-down text-gold"></i>
+                    </button>
+                    <div id="acc2" class="accordion-content px-5 bg-white">
+                        <p class="py-4 text-sm text-gray-600 border-t border-gray-50"><strong>Causa:</strong> Excediste la carga de fragancia o la añadiste cuando la cera estaba muy fría (< 70°C).<br><strong>Solución:</strong> Absorbe suavemente con toalla de papel y reposa 48h. Si continúa, vuelve a derretir y añade cera pura.</p>
+                    </div>
+                </div>
+                <div class="glass-card rounded-xl overflow-hidden border border-gray-100">
+                    <button onclick="toggleAccordion('acc3')" class="w-full text-left p-5 font-bold flex justify-between items-center bg-white hover:bg-gray-50 transition">
+                        ¿Se hundió el centro? (Sinkholes) <i class="fa-solid fa-chevron-down text-gold"></i>
+                    </button>
+                    <div id="acc3" class="accordion-content px-5 bg-white">
+                        <p class="py-4 text-sm text-gray-600 border-t border-gray-50"><strong>Causa:</strong> La cera se vertió muy caliente. Al enfriarse y contraerse el centro, tira de la superficie hacia abajo.<br><strong>Solución:</strong> Guarda cera sobrante y realiza un "Top-Off" (vierte una capa fina para rellenar) o nivela con pistola de calor.</p>
+                    </div>
+                </div>
             </div>
         </section>
+
     </main>
 
     <script>
+        // DATOS DE RECETAS PREMIUM (Bono 2)
+        const premiumRecipesData = [
+            { id: 1, title: "Santuario de Paz", effect: "Relajación", waxQty: 180, oils: [{name: "Lavanda", qty: 10}, {name: "Manzanilla", qty: 6}, {name: "Vainilla", qty: 4}], temp: "58°C" },
+            { id: 2, title: "Amanecer Cítrico", effect: "Energía", waxQty: 180, oils: [{name: "Naranja Dulce", qty: 8}, {name: "Pomelo Rosado", qty: 7}, {name: "Menta", qty: 5}], temp: "Dejar formar piel" },
+            { id: 3, title: "Romance de Época", effect: "Elegancia", waxQty: 180, oils: [{name: "Rosa Damascena", qty: 9}, {name: "Peonía", qty: 7}, {name: "Sándalo", qty: 4}], temp: "Aplicar oro casi sólido" },
+            { id: 4, title: "Sueño de Cuna", effect: "Bebés", waxQty: 188, oils: [{name: "Manzanilla Romana", qty: 8}, {name: "Lavanda", qty: 4}], temp: "60°C - Moldes pastel" },
+            { id: 5, title: "Hogar Pet-Friendly", effect: "Mascotas", waxQty: 184, oils: [{name: "Naranja Dulce", qty: 10}, {name: "Cedro", qty: 6}], temp: "60°C - Sin botánica suelta" }
+        ];
+
+        let currentCalculation = null;
+
+        // INICIALIZACIÓN
+        window.onload = () => {
+            addOilRow(); // Añade una fila vacía por defecto en la calc
+            renderPremiumRecipes();
+            renderCustomRecipes();
+            renderCatalog();
+        };
+
+        // NAVEGACIÓN
         function openTab(id) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => {
@@ -172,19 +248,33 @@
             event.target.classList.add('active', 'text-gold', 'border-b-2', 'border-gold');
         }
 
-        function addOilRow() {
+        // ACORDEÓN
+        function toggleAccordion(id) {
+            const el = document.getElementById(id);
+            if (el.style.maxHeight) {
+                el.style.maxHeight = null;
+            } else {
+                el.style.maxHeight = el.scrollHeight + "px";
+            }
+        }
+
+        // --- LÓGICA CALCULADORA ---
+        function addOilRow(name = '', qty = '') {
             const container = document.getElementById('oilContainer');
             const div = document.createElement('div');
             div.className = "oil-row grid grid-cols-12 gap-2 items-end border-b border-gray-50 pb-4";
             div.innerHTML = `
                 <div class="col-span-5">
-                    <input type="text" placeholder="Ej: Manzanilla" class="oil-name w-full mt-1 p-2 border border-gray-100 rounded-lg text-sm outline-none">
+                    <label class="text-[10px] font-bold text-gray-300 uppercase">Nombre/Nota</label>
+                    <input type="text" placeholder="Ej: Lavanda" value="${name}" class="oil-name w-full mt-1 p-2 border border-gray-100 rounded-lg text-sm outline-none focus:border-gold">
                 </div>
                 <div class="col-span-3">
-                    <input type="number" placeholder="Precio" class="oil-price w-full mt-1 p-2 border border-gray-100 rounded-lg text-sm outline-none">
+                    <label class="text-[10px] font-bold text-gray-300 uppercase">Precio/100ml</label>
+                    <input type="number" placeholder="30" class="oil-price w-full mt-1 p-2 border border-gray-100 rounded-lg text-sm outline-none focus:border-gold">
                 </div>
                 <div class="col-span-3">
-                    <input type="number" placeholder="Gramos" class="oil-qty w-full mt-1 p-2 border border-gray-100 rounded-lg text-sm outline-none">
+                    <label class="text-[10px] font-bold text-gray-300 uppercase">Gramos</label>
+                    <input type="number" placeholder="10" value="${qty}" class="oil-qty w-full mt-1 p-2 border border-gray-100 rounded-lg text-sm outline-none focus:border-gold">
                 </div>
                 <div class="col-span-1 text-center">
                     <button onclick="this.parentElement.parentElement.remove()" class="text-red-300 hover:text-red-500 mb-2"><i class="fa-solid fa-xmark"></i></button>
@@ -193,65 +283,187 @@
             container.appendChild(div);
         }
 
-        function calculateComplex() {
-            // 1. Costo Cera
+        function calculateCost() {
             const waxPriceKg = parseFloat(document.getElementById('base_wax_price').value) || 0;
             const waxGrams = parseFloat(document.getElementById('base_wax_qty').value) || 0;
             const waxCost = (waxPriceKg / 1000) * waxGrams;
 
-            // 2. Costo Aceites
             let oilsCost = 0;
-            let totalOilGrams = 0;
             const rows = document.querySelectorAll('.oil-row');
             rows.forEach(row => {
                 const p = parseFloat(row.querySelector('.oil-price').value) || 0;
                 const q = parseFloat(row.querySelector('.oil-qty').value) || 0;
                 oilsCost += (p / 100) * q;
-                totalOilGrams += q;
             });
 
-            // 3. Otros Costos
             const pack = parseFloat(document.getElementById('pack_price').value) || 0;
-            const labor = (parseFloat(document.getElementById('labor_price').value) / 60) * 15; // Asumimos 15 min
+            const laborPrice = parseFloat(document.getElementById('labor_price').value) || 0;
+            const laborTime = parseFloat(document.getElementById('labor_time').value) || 0;
+            const laborCost = (laborPrice / 60) * laborTime;
 
-            const mpTotal = waxCost + oilsCost + pack;
-            const hidden = mpTotal * 0.15; // 15% según Bono 4
-            const unitCost = mpTotal + hidden + labor;
+            const mpCost = waxCost + oilsCost + pack;
+            const hiddenCost = mpCost * 0.15; // 15% costos ocultos
+            const totalCost = mpCost + hiddenCost + laborCost;
 
-            // Mostrar Resultados
-            document.getElementById('res_weight').innerText = `${(waxGrams + totalOilGrams).toFixed(1)}g`;
-            document.getElementById('res_mp').innerText = `$${mpTotal.toFixed(2)}`;
-            document.getElementById('res_hidden').innerText = `$${hidden.toFixed(2)}`;
-            document.getElementById('res_total').innerText = `$${unitCost.toFixed(2)}`;
-            document.getElementById('res_retail').innerText = `$${(unitCost * 3.5).toFixed(2)}`;
-            document.getElementById('res_wholesale').innerText = `$${(unitCost * 2).toFixed(2)}`;
+            const retail = totalCost * 3.5;
+            const wholesale = totalCost * 2;
+
+            currentCalculation = { cost: totalCost, retail, wholesale };
+
+            document.getElementById('res_mp').innerText = `$${mpCost.toFixed(2)}`;
+            document.getElementById('res_hidden').innerText = `$${hiddenCost.toFixed(2)}`;
+            document.getElementById('res_labor').innerText = `$${laborCost.toFixed(2)}`;
+            document.getElementById('res_total').innerText = `$${totalCost.toFixed(2)}`;
+            document.getElementById('res_retail').innerText = `$${retail.toFixed(2)}`;
+            document.getElementById('res_wholesale').innerText = `$${wholesale.toFixed(2)}`;
             
             document.getElementById('resBox').classList.remove('hidden');
         }
 
-        // Datos precargados (Iguales a la versión anterior)
-        const premiumRecipes = [
-            { title: "Santuario de Paz", niche: "Bienestar", wax: "180g Soja", blend: "10g Lavanda, 6g Manzanilla, 4g Vainilla", technique: "Verter a 58°C." },
-            { title: "Amanecer Cítrico", niche: "Energía", wax: "180g Soja", blend: "8g Naranja, 7g Pomelo, 5g Menta", technique: "Para espacios de estudio." },
-            { title: "Romance de Época", niche: "Bodas", wax: "180g Soja", blend: "9g Rosa, 7g Peonía, 4g Sándalo", technique: "Acabado con pan de oro." }
-        ];
+        // --- LÓGICA CATÁLOGO ---
+        function saveToCatalog() {
+            const name = document.getElementById('saveName').value.trim();
+            if(!name || !currentCalculation) return alert("Por favor calcula la inversión e ingresa un nombre para el producto.");
+            
+            let catalog = JSON.parse(localStorage.getItem('imperio_catalog')) || [];
+            catalog.push({ id: Date.now(), name: name, ...currentCalculation });
+            localStorage.setItem('imperio_catalog', JSON.stringify(catalog));
+            
+            document.getElementById('saveName').value = '';
+            alert("¡Producto guardado en tu catálogo!");
+            renderCatalog();
+        }
 
-        const troubleItems = [
-            { q: "¿Frosting (Manchas)?", a: "Es enfriamiento rápido. Solución: Usa secador de pelo 3 segundos para dar brillo[cite: 604]." },
-            { q: "¿Sudoración (Aceite)?", a: "Añadiste aroma a menos de 70°C. Solución: Absorbe con papel tissue[cite: 613]." }
-        ];
+        function renderCatalog() {
+            const catalog = JSON.parse(localStorage.getItem('imperio_catalog')) || [];
+            const grid = document.getElementById('catalogGrid');
+            grid.innerHTML = '';
+            
+            if(catalog.length === 0) {
+                grid.innerHTML = '<p class="text-gray-400 col-span-full">Aún no hay productos guardados.</p>';
+                return;
+            }
 
-        window.onload = () => {
-            const rGrid = document.getElementById('recipeGrid');
-            premiumRecipes.forEach(r => {
-                rGrid.innerHTML += `<div class="glass-card rounded-xl p-5 border-l-4 border-sageGreen"><h4 class="font-bold text-lg">${r.title}</h4><p class="text-xs text-gray-400 uppercase mb-2">${r.niche}</p><p class="text-sm"><strong>Cera:</strong> ${r.wax}</p><p class="text-sm"><strong>Blend:</strong> ${r.blend}</p></div>`;
+            catalog.forEach(item => {
+                grid.innerHTML += `
+                    <div class="glass-card rounded-2xl p-6 relative bg-white">
+                        <button onclick="deleteCatalogItem(${item.id})" class="absolute top-4 right-4 text-gray-300 hover:text-red-500 transition"><i class="fa-solid fa-trash"></i></button>
+                        <h4 class="font-serif text-xl font-bold mb-4 pr-6 text-darkText">${item.name}</h4>
+                        <div class="space-y-2 text-sm border-t border-gray-50 pt-4">
+                            <div class="flex justify-between text-gray-500"><span>Costo Unitario:</span><span class="font-bold text-darkText">$${item.cost.toFixed(2)}</span></div>
+                            <div class="flex justify-between text-sageGreen"><span>Retail Sugerido:</span><span class="font-bold">$${item.retail.toFixed(2)}</span></div>
+                            <div class="flex justify-between text-gold"><span>Mayorista Sugerido:</span><span class="font-bold">$${item.wholesale.toFixed(2)}</span></div>
+                        </div>
+                    </div>
+                `;
             });
+        }
 
-            const tAcc = document.getElementById('troubleAccordion');
-            troubleItems.forEach((item, i) => {
-                tAcc.innerHTML += `<div class="glass-card rounded-xl overflow-hidden"><button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left p-4 font-bold flex justify-between">${item.q} <i class="fa-solid fa-chevron-down text-gold"></i></button><div class="hidden px-4 pb-4 text-sm text-gray-500">${item.a}</div></div>`;
+        function deleteCatalogItem(id) {
+            let catalog = JSON.parse(localStorage.getItem('imperio_catalog')) || [];
+            catalog = catalog.filter(i => i.id !== id);
+            localStorage.setItem('imperio_catalog', JSON.stringify(catalog));
+            renderCatalog();
+        }
+
+        // --- LÓGICA RECETARIO ---
+        function renderPremiumRecipes() {
+            const grid = document.getElementById('premiumRecipesGrid');
+            grid.innerHTML = '';
+            premiumRecipesData.forEach(r => {
+                const blendText = r.oils.map(o => `${o.qty}g ${o.name}`).join(', ');
+                grid.innerHTML += `
+                    <div class="glass-card rounded-2xl p-6 border-l-4 border-gold bg-white flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-serif text-lg font-bold">${r.title}</h4>
+                            <p class="text-[10px] font-bold text-sageGreen uppercase mb-3">${r.effect}</p>
+                            <p class="text-sm mb-1 text-gray-600"><strong>Cera:</strong> ${r.waxQty}g</p>
+                            <p class="text-sm mb-3 text-gray-600"><strong>Blend:</strong> ${blendText}</p>
+                            <p class="text-xs text-gray-400 italic mb-4"><i class="fa-solid fa-temperature-half mr-1"></i>${r.temp}</p>
+                        </div>
+                        <button onclick="loadRecipeToCalc(${r.id})" class="w-full text-xs font-bold text-gold border border-gold rounded-lg py-2 hover:bg-gold hover:text-white transition uppercase tracking-wider">Cargar en Calculadora</button>
+                    </div>
+                `;
             });
-        };
+        }
+
+        function loadRecipeToCalc(id) {
+            const recipe = premiumRecipesData.find(r => r.id === id);
+            if(!recipe) return;
+            
+            // Navegar a la tab de calc
+            openTab('calc');
+            
+            // Setear Cera
+            document.getElementById('base_wax_qty').value = recipe.waxQty;
+            
+            // Limpiar aceites actuales y agregar los de la receta
+            const container = document.getElementById('oilContainer');
+            container.innerHTML = '';
+            recipe.oils.forEach(oil => {
+                addOilRow(oil.name, oil.qty);
+            });
+            
+            // Scroll top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Recetas Personalizadas
+        function saveCustomRecipe() {
+            const name = document.getElementById('myR_name').value.trim();
+            if(!name) return alert("Ingresa un nombre para la receta.");
+            
+            const rec = {
+                id: Date.now(),
+                name: name,
+                wax: document.getElementById('myR_wax').value,
+                temp: document.getElementById('myR_temp').value,
+                blend: document.getElementById('myR_blend').value
+            };
+            
+            let recipes = JSON.parse(localStorage.getItem('imperio_myrecipes')) || [];
+            recipes.push(rec);
+            localStorage.setItem('imperio_myrecipes', JSON.stringify(recipes));
+            
+            document.getElementById('myR_name').value = '';
+            document.getElementById('myR_wax').value = '';
+            document.getElementById('myR_temp').value = '';
+            document.getElementById('myR_blend').value = '';
+            
+            renderCustomRecipes();
+        }
+
+        function renderCustomRecipes() {
+            const recipes = JSON.parse(localStorage.getItem('imperio_myrecipes')) || [];
+            const grid = document.getElementById('myRecipesGrid');
+            grid.innerHTML = '';
+            
+            if(recipes.length === 0) {
+                grid.innerHTML = '<p class="text-gray-400 col-span-full">Aún no tienes recetas personalizadas.</p>';
+                return;
+            }
+
+            recipes.forEach(r => {
+                grid.innerHTML += `
+                    <div class="glass-card rounded-2xl p-5 relative bg-white border border-gray-100">
+                        <button onclick="deleteCustomRecipe(${r.id})" class="absolute top-4 right-4 text-gray-300 hover:text-red-500 transition"><i class="fa-solid fa-trash"></i></button>
+                        <h4 class="font-bold text-darkText mb-3 pr-6">${r.name}</h4>
+                        <div class="text-xs text-gray-500 space-y-1 mb-3">
+                            <p><strong>Cera:</strong> ${r.wax}</p>
+                            <p><strong>Temp:</strong> ${r.temp}°C</p>
+                        </div>
+                        <p class="text-sm text-gray-600 bg-gray-50 p-2 rounded-lg italic">${r.blend}</p>
+                    </div>
+                `;
+            });
+        }
+
+        function deleteCustomRecipe(id) {
+            let recipes = JSON.parse(localStorage.getItem('imperio_myrecipes')) || [];
+            recipes = recipes.filter(r => r.id !== id);
+            localStorage.setItem('imperio_myrecipes', JSON.stringify(recipes));
+            renderCustomRecipes();
+        }
     </script>
 </body>
 </html>
