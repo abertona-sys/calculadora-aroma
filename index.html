@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imperio de los Aromas - App PRO</title>
+    <title>Casa Aroma App - PRO</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -49,7 +49,7 @@
 
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-5xl mx-auto px-4 py-5 flex justify-between items-center">
-            <h1 class="font-serif text-2xl font-bold text-gold"><i class="fa-solid fa-leaf mr-2"></i>Imperio App</h1>
+            <h1 class="font-serif text-2xl font-bold text-gold"><i class="fa-solid fa-leaf mr-2"></i>Casa Aroma App</h1>
             <span class="text-xs font-bold bg-sageGreen text-white px-3 py-1 rounded-full uppercase">PRO V2</span>
         </div>
         <nav class="flex overflow-x-auto border-b border-gray-100 bg-ivory">
@@ -62,11 +62,13 @@
 
     <main class="max-w-5xl mx-auto px-4 py-8">
 
+        <!-- MÓDULO 1: CALCULADORA -->
         <section id="calc" class="tab-content active">
             <h2 class="font-serif text-3xl mb-2 text-sageGreen text-center">Calculadora de Blends</h2>
             <p class="text-sm text-gray-500 mb-8 text-center">Calcula rentabilidad exacta según la Masterclass.</p>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Formulario -->
                 <div>
                     <div class="glass-card rounded-2xl p-6 mb-6">
                         <h3 class="text-xs font-bold uppercase text-gold mb-4 tracking-widest"><i class="fa-solid fa-box-open mr-2"></i>Base de Cera</h3>
@@ -88,7 +90,8 @@
                             <button onclick="addOilRow()" class="text-xs bg-sageGreen text-white px-3 py-1 rounded-lg font-bold hover:bg-opacity-80 transition">+ Añadir</button>
                         </div>
                         <div id="oilContainer" class="space-y-4">
-                            </div>
+                            <!-- Filas dinámicas -->
+                        </div>
                     </div>
 
                     <div class="glass-card rounded-2xl p-6 mb-6">
@@ -112,6 +115,7 @@
                     <button type="button" onclick="calculateCost()" class="w-full bg-darkText text-white font-bold py-4 rounded-xl shadow-lg hover:bg-opacity-90 transition uppercase tracking-widest text-sm">Calcular Inversión Total</button>
                 </div>
 
+                <!-- Resultados -->
                 <div>
                     <div id="resBox" class="hidden glass-card rounded-3xl p-8 border-t-8 border-sageGreen bg-white sticky top-24">
                         <h4 class="text-[10px] font-bold text-gray-400 uppercase mb-4 tracking-widest">Resumen de Producción</h4>
@@ -134,6 +138,7 @@
                             </div>
                         </div>
 
+                        <!-- Guardar en Catálogo -->
                         <div class="pt-4 border-t border-gray-100">
                             <label class="text-[10px] font-bold text-gray-400 uppercase">Guardar en Catálogo</label>
                             <div class="flex gap-2 mt-1">
@@ -146,15 +151,18 @@
             </div>
         </section>
 
+        <!-- MÓDULO 2: RECETARIO -->
         <section id="recipes" class="tab-content">
             <h2 class="font-serif text-3xl mb-6 text-sageGreen">Recetario</h2>
             
-            <h3 class="text-xl font-serif text-gold mb-4 border-b pb-2">Recetas Premium (Bono 2)</h3>
+            <h3 class="text-xl font-serif text-gold mb-4 border-b pb-2">Recetas Premium</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" id="premiumRecipesGrid">
-                </div>
+                <!-- Renderizado por JS -->
+            </div>
 
             <h3 class="text-xl font-serif text-gold mb-4 border-b pb-2">Mis Recetas Personalizadas</h3>
             
+            <!-- Formulario Recetas Personalizadas -->
             <div class="glass-card rounded-2xl p-6 mb-8">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                     <input type="text" id="myR_name" placeholder="Nombre de la receta" class="md:col-span-2 p-3 border border-gray-100 rounded-xl text-sm outline-none">
@@ -165,29 +173,34 @@
                 <button onclick="saveCustomRecipe()" class="w-full md:w-auto px-6 bg-sageGreen text-white font-bold py-3 rounded-xl shadow hover:bg-opacity-90 transition text-sm uppercase tracking-widest">Guardar Receta</button>
             </div>
 
+            <!-- Grilla Mis Recetas -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="myRecipesGrid"></div>
         </section>
 
+        <!-- MÓDULO 3: CATÁLOGO -->
         <section id="catalog" class="tab-content">
             <h2 class="font-serif text-3xl mb-2 text-sageGreen">Mi Catálogo de Productos</h2>
             <p class="text-sm text-gray-500 mb-8">Productos guardados desde la Calculadora.</p>
             <div id="catalogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                </div>
+                <!-- Renderizado por JS -->
+            </div>
         </section>
 
+        <!-- MÓDULO 4: ASISTENCIA Y TROUBLESHOOTING -->
         <section id="help" class="tab-content">
             <div class="bg-gradient-to-br from-darkText to-gray-800 rounded-3xl p-8 text-white mb-10 shadow-2xl relative overflow-hidden">
                 <div class="relative z-10">
                     <h2 class="font-serif text-3xl mb-3">El Experto Aromático</h2>
-                    <p class="text-gray-300 mb-6 max-w-md">Tu asistente de inteligencia artificial entrenado con toda la base de datos del Imperio.</p>
+                    <p class="text-gray-300 mb-6 max-w-md">Tu asistente de inteligencia artificial entrenado con toda la base de datos de Casa Aroma.</p>
                     <a href="https://gemini.google.com/gem/0562d0cce8e5" target="_blank" class="bg-gold hover:bg-white hover:text-gold transition px-8 py-4 rounded-xl font-bold inline-block shadow-xl">
                         <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Abrir Consultoría AI
                     </a>
                 </div>
             </div>
 
-            <h3 class="font-serif text-2xl mb-5 text-gray-700">Troubleshooting (Bono 7)</h3>
+            <h3 class="font-serif text-2xl mb-5 text-gray-700">Troubleshooting</h3>
             <div class="space-y-4">
+                <!-- Acordeón 1 -->
                 <div class="glass-card rounded-xl overflow-hidden border border-gray-100">
                     <button onclick="toggleAccordion('acc1')" class="w-full text-left p-5 font-bold flex justify-between items-center bg-white hover:bg-gray-50 transition">
                         ¿Manchas blancas? (Frosting) <i class="fa-solid fa-chevron-down text-gold"></i>
@@ -196,6 +209,7 @@
                         <p class="py-4 text-sm text-gray-600 border-t border-gray-50"><strong>Causa:</strong> Enfriamiento rápido o choque térmico. Reacción natural de la soja.<br><strong>Solución:</strong> Pasa rápidamente un secador de pelo o pistola de calor sobre la superficie por 3-5 segundos. Al secarse, el frosting habrá desaparecido.</p>
                     </div>
                 </div>
+                <!-- Acordeón 2 -->
                 <div class="glass-card rounded-xl overflow-hidden border border-gray-100">
                     <button onclick="toggleAccordion('acc2')" class="w-full text-left p-5 font-bold flex justify-between items-center bg-white hover:bg-gray-50 transition">
                         ¿Gotas de aceite? (Sudoración) <i class="fa-solid fa-chevron-down text-gold"></i>
@@ -204,6 +218,7 @@
                         <p class="py-4 text-sm text-gray-600 border-t border-gray-50"><strong>Causa:</strong> Excediste la carga de fragancia o la añadiste cuando la cera estaba muy fría (< 70°C).<br><strong>Solución:</strong> Absorbe suavemente con toalla de papel y reposa 48h. Si continúa, vuelve a derretir y añade cera pura.</p>
                     </div>
                 </div>
+                <!-- Acordeón 3 -->
                 <div class="glass-card rounded-xl overflow-hidden border border-gray-100">
                     <button onclick="toggleAccordion('acc3')" class="w-full text-left p-5 font-bold flex justify-between items-center bg-white hover:bg-gray-50 transition">
                         ¿Se hundió el centro? (Sinkholes) <i class="fa-solid fa-chevron-down text-gold"></i>
@@ -213,12 +228,16 @@
                     </div>
                 </div>
             </div>
+            <div class="mt-8 p-6 bg-ivory rounded-2xl border border-gold border-dashed text-center">
+                <p class="text-sm italic mb-4">¿Dudas técnicas específicas? Pregunta a la IA de Casa Aroma.</p>
+                <a href="https://gemini.google.com/gem/0562d0cce8e5" target="_blank" class="bg-gold text-white px-6 py-3 rounded-xl font-bold inline-block">Abrir Experto Aromático</a>
+            </div>
         </section>
 
     </main>
 
     <script>
-        // DATOS DE RECETAS PREMIUM (Bono 2)
+        // DATOS DE RECETAS PREMIUM
         const premiumRecipesData = [
             { id: 1, title: "Santuario de Paz", effect: "Relajación", waxQty: 180, oils: [{name: "Lavanda", qty: 10}, {name: "Manzanilla", qty: 6}, {name: "Vainilla", qty: 4}], temp: "58°C" },
             { id: 2, title: "Amanecer Cítrico", effect: "Energía", waxQty: 180, oils: [{name: "Naranja Dulce", qty: 8}, {name: "Pomelo Rosado", qty: 7}, {name: "Menta", qty: 5}], temp: "Dejar formar piel" },
@@ -231,7 +250,7 @@
 
         // INICIALIZACIÓN
         window.onload = () => {
-            addOilRow(); // Añade una fila vacía por defecto en la calc
+            addOilRow(); 
             renderPremiumRecipes();
             renderCustomRecipes();
             renderCatalog();
@@ -325,9 +344,9 @@
             const name = document.getElementById('saveName').value.trim();
             if(!name || !currentCalculation) return alert("Por favor calcula la inversión e ingresa un nombre para el producto.");
             
-            let catalog = JSON.parse(localStorage.getItem('imperio_catalog')) || [];
+            let catalog = JSON.parse(localStorage.getItem('casa_aroma_catalog')) || [];
             catalog.push({ id: Date.now(), name: name, ...currentCalculation });
-            localStorage.setItem('imperio_catalog', JSON.stringify(catalog));
+            localStorage.setItem('casa_aroma_catalog', JSON.stringify(catalog));
             
             document.getElementById('saveName').value = '';
             alert("¡Producto guardado en tu catálogo!");
@@ -335,7 +354,7 @@
         }
 
         function renderCatalog() {
-            const catalog = JSON.parse(localStorage.getItem('imperio_catalog')) || [];
+            const catalog = JSON.parse(localStorage.getItem('casa_aroma_catalog')) || [];
             const grid = document.getElementById('catalogGrid');
             grid.innerHTML = '';
             
@@ -360,9 +379,9 @@
         }
 
         function deleteCatalogItem(id) {
-            let catalog = JSON.parse(localStorage.getItem('imperio_catalog')) || [];
+            let catalog = JSON.parse(localStorage.getItem('casa_aroma_catalog')) || [];
             catalog = catalog.filter(i => i.id !== id);
-            localStorage.setItem('imperio_catalog', JSON.stringify(catalog));
+            localStorage.setItem('casa_aroma_catalog', JSON.stringify(catalog));
             renderCatalog();
         }
 
@@ -421,9 +440,9 @@
                 blend: document.getElementById('myR_blend').value
             };
             
-            let recipes = JSON.parse(localStorage.getItem('imperio_myrecipes')) || [];
+            let recipes = JSON.parse(localStorage.getItem('casa_aroma_myrecipes')) || [];
             recipes.push(rec);
-            localStorage.setItem('imperio_myrecipes', JSON.stringify(recipes));
+            localStorage.setItem('casa_aroma_myrecipes', JSON.stringify(recipes));
             
             document.getElementById('myR_name').value = '';
             document.getElementById('myR_wax').value = '';
@@ -434,7 +453,7 @@
         }
 
         function renderCustomRecipes() {
-            const recipes = JSON.parse(localStorage.getItem('imperio_myrecipes')) || [];
+            const recipes = JSON.parse(localStorage.getItem('casa_aroma_myrecipes')) || [];
             const grid = document.getElementById('myRecipesGrid');
             grid.innerHTML = '';
             
@@ -459,9 +478,9 @@
         }
 
         function deleteCustomRecipe(id) {
-            let recipes = JSON.parse(localStorage.getItem('imperio_myrecipes')) || [];
+            let recipes = JSON.parse(localStorage.getItem('casa_aroma_myrecipes')) || [];
             recipes = recipes.filter(r => r.id !== id);
-            localStorage.setItem('imperio_myrecipes', JSON.stringify(recipes));
+            localStorage.setItem('casa_aroma_myrecipes', JSON.stringify(recipes));
             renderCustomRecipes();
         }
     </script>
